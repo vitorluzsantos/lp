@@ -1,0 +1,39 @@
+o que é um .jar
+-> é um arquivo compilado do projeto que inclui 
+	 tudo aquilo que ele precisa para executar
+
+como gerar um
+-> 1. ir no pom.xml
+	 2. criar um <build> e dentro dele um <plugins>
+	 3. dentro do plugins coloca o plugin "substitui o Main pelo caminho ate o seu main 'exemplo.pacote.Main'"
+		 <plugin>
+		 <groupId>org.apache.maven.plugins</groupId>
+		 <artifactId>maven-shade-plugin</artifactId>
+		 <version>3.3.0</version>
+		 <executions>
+		 <execution>
+		 <phase>package</phase>
+		 <goals>
+		 <goal>shade</goal>
+		 </goals>
+		 <configuration>
+		 <transformers>
+		 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+		 <mainClass>
+		 Main
+		 </mainClass>
+		 </transformer>
+		 </transformers>
+		 </configuration>
+		 </execution>
+		 </executions>
+		 </plugin>
+	 4. sincroniza o maven
+	 5. no terminal baixa o maven
+	 6. no terminal
+			-> mvn package <== isso gera a pasta target com o executavel
+			-> cd target 
+			-> java -jav nome-do-arquivo.jar
+
+
+
